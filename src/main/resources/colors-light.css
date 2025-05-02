@@ -1,0 +1,22 @@
+.root {
+    -color-background: linear-gradient(to bottom, #ffffff, #f0f0f0);
+    -color-text: #000000;
+    -color-separator: #cccccc;
+    -color-border: #cccccc;
+    -color-border-focused: #007bff;
+    -color-text-field: #000000;
+    -color-background-field: #ffffff;
+    -color-background-field-hover: #f0f0f0;
+    -color-text-button: #ffffff;
+    -color-background-button: #007bff;
+    -color-background-button-hover: #0056b3;
+    -color-background-button-pressed: #004085;
+
+    /* Добавленные цвета */
+    -color-header-background: #f0f0f0; /* Цвет фона заголовка таблицы */
+    -color-header-text: #000000; /* Цвет текста заголовка таблицы */
+    -color-row-hover: #e0e0e0; /* Цвет фона строки при наведении */
+    -color-row-selected: #cce5ff; /* Цвет фона выделенной строки */
+    -color-text-selected: #000000; /* Цвет текста выделенной строки */
+    -color-cell-background: #ffffff; /* Цвет фона ячейки */
+}

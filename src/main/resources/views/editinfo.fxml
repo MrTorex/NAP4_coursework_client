@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="by.mrtorex.businessshark.client.gui.controllers.EditInfoController">
+
+    <Label styleClass="title">Изменение данных</Label>
+
+    <Separator />
+
+    <HBox styleClass="workflowHBox">
+        <VBox styleClass="infoVBox">
+            <Label>Ваши текущие данные</Label>
+            <Label fx:id="username">Имя пользователя: </Label>
+            <Label fx:id="firstName">Имя: </Label>
+            <Label fx:id="lastName">Фамилия: </Label>
+            <Label fx:id="patronymic">Отчество: </Label>
+        </VBox>
+
+        <Separator styleClass="vertical"/>
+
+        <VBox styleClass="buttonsVBox">
+            <Label>Внести изменения</Label>
+            <HBox styleClass="registerHBox">
+                <VBox styleClass="registerVBox">
+                    <TextField fx:id="usernameField" promptText="Введите имя пользователя *"/>
+                    <PasswordField fx:id="passwordField" promptText="Введите пароль *"/>
+                    <PasswordField fx:id="confirmPasswordField" promptText="Повторите пароль *"/>
+                </VBox>
+
+                <VBox styleClass="registerVBox">
+                    <TextField fx:id="firstNameField" promptText="Введите имя *"/>
+                    <TextField fx:id="lastNameField" promptText="Введите фамилию *"/>
+                    <TextField fx:id="patronymicField" promptText="Введите отчество"/>
+                </VBox>
+            </HBox>
+        </VBox>
+    </HBox>
+
+    <Button fx:id="editButton" onAction="#onEditButton" text="Изменить данные" />
+
+    <Separator />
+
+    <Button fx:id="backToMenuButton" onAction="#onBackToMenuButton" text="В меню" />
+</VBox>
