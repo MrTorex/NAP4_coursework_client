@@ -1,6 +1,10 @@
 package by.mrtorex.businessshark.server.network;
 
 import by.mrtorex.businessshark.server.exceptions.NoConnectionException;
+import by.mrtorex.businessshark.server.model.entities.User;
+
+import lombok.Getter;
+import lombok.Setter;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -14,6 +18,10 @@ public class ServerClient {
     private Socket socket;
     private ObjectOutputStream out;
     private ObjectInputStream in;
+
+    @Getter
+    @Setter
+    private static User currentUser;
 
     private ServerClient() throws NoConnectionException {
         connect(); // Если подключение провалится, выбросится исключение NoConnectionException

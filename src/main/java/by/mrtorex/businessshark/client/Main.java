@@ -52,19 +52,7 @@ public class Main extends Application {
         ServerClient client = ServerClient.getInstance();
 
         if (client != null) {
-            try {
-                Request request = new Request(Operation.DISCONNECT, null);
-
-                Response response = client.sendRequest(request);
-
-                if(response.isSuccess()) {
-                    System.out.println("Disconnected successfully from the server.");
-                }
-            } catch (Exception e) {
-                System.err.println("Failed to send disconnect request: " + e.getMessage());
-            } finally {
-                client.disconnect();
-            }
+            client.disconnect();
         }
     }
 
