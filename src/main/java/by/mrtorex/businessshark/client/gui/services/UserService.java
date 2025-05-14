@@ -9,12 +9,13 @@ import by.mrtorex.businessshark.server.network.Response;
 import by.mrtorex.businessshark.server.network.ServerClient;
 import by.mrtorex.businessshark.server.serializer.Serializer;
 import by.mrtorex.businessshark.server.utils.Pair;
+import by.mrtorex.businessshark.server.utils.PasswordHasher;
 
 public class UserService {
     public Response login(String username, String password) {
         User user = new User();
         user.setUsername(username);
-        user.setPassword(password);
+        user.setPasswordHash(PasswordHasher.hashPassword(password));
 
         String userJson = Serializer.toJson(user);
         Request request = new Request(Operation.LOGIN, userJson);
@@ -25,7 +26,7 @@ public class UserService {
     public Response register(String username, String password, String firstName, String lastName, String patronymic) {
         User user = new User();
         user.setUsername(username);
-        user.setPassword(password);
+        user.setPasswordHash(PasswordHasher.hashPassword(password));
 
         Role role = new Role();
         role.setName("Admin");
