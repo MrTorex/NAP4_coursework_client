@@ -44,7 +44,12 @@ public class LoginController implements Initializable {
         if (response.isSuccess()) {
             ServerClient.setCurrentUser(new Deserializer().extractData(response.getData(), User.class));
 
-            Loader.loadScene((Stage) loginButton.getScene().getWindow(), ScenePath.USER_MENU);
+            switch (ServerClient.getCurrentUser().getRole().getId())
+            {
+                case 1 -> Loader.loadScene((Stage) loginButton.getScene().getWindow(), ScenePath.ADMIN_MENU);
+                case 2 -> Loader.loadScene((Stage) loginButton.getScene().getWindow(), ScenePath.USER_MENU);
+                default -> throw new IllegalStateException("Unexpected value: " + ServerClient.getCurrentUser().getRole().getId());
+            }
         } else {
             AlertUtil.error("Login Error", response.getMessage());
         }
