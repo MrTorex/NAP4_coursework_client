@@ -1,7 +1,9 @@
 package by.mrtorex.businessshark.client.gui.utils;
 
+import by.mrtorex.businessshark.client.Main;
 import by.mrtorex.businessshark.client.gui.enums.ScenePath;
 
+import by.mrtorex.businessshark.client.gui.enums.ThemesPath;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,7 +29,7 @@ public class Loader {
 
         stage.setResizable(true);
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(Objects.requireNonNull(Loader.class.getResource("/colors-synthwave.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(Loader.class.getResource(String.valueOf(ThemesPath.valueOf(Main.themeName).getPathToCss()))).toExternalForm());
         scene.getStylesheets().add(Objects.requireNonNull(Loader.class.getResource("/styles.css")).toExternalForm());
         stage.setScene(scene);
 
@@ -43,5 +45,9 @@ public class Loader {
         } catch (Exception e) {
             logger.error("Unexpected error occurred while loading scene: {}", scenePath.getPathToFxml(), e);
         }
+    }
+
+    public static void reloadForTheme() {
+        loadScene(Main.getPrimaryStage(), ScenePath.LOGIN);
     }
 }

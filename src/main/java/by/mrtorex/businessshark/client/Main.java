@@ -7,10 +7,12 @@ import by.mrtorex.businessshark.server.network.Request;
 import by.mrtorex.businessshark.server.network.Response;
 import by.mrtorex.businessshark.server.network.ServerClient;
 
+
 import javafx.application.Application;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
+import lombok.Getter;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -20,10 +22,16 @@ public class Main extends Application {
 
     private static final Logger logger = LogManager.getLogger("main");
 
+    public static String themeName = "SYNTHWAVE";
+
+    @Getter
+    private static Stage primaryStage;
+
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(Stage Stage) throws Exception {
         try {
             logger.info("Starting up application...");
+            primaryStage = Stage;
 
             logger.info("Setting up primary stage (setTitle)...");
             primaryStage.setTitle("Business Shark");

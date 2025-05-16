@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
 
+<?import javafx.scene.control.ComboBox?>
 <VBox xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="by.mrtorex.businessshark.client.gui.controllers.LoginController">
 
     <ImageView fitHeight="200" fitWidth="200" pickOnBounds="true" preserveRatio="true">
@@ -28,4 +29,10 @@
     <Button fx:id="loginButton" onAction="#onLoginButton" text="Войти"/>
 
     <Button fx:id="regButton" onAction="#onRegButton" text="Регистрация"/>
+
+    <Separator/>
+
+    <Label>Тема</Label>
+
+    <ComboBox fx:id="themesComboBox" onAction="#onThemesComboBox"/>
 </VBox>

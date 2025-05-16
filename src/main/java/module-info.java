@@ -16,4 +16,5 @@ module by.mrtorex.businessshark.client {
     opens by.mrtorex.businessshark.client.gui.services to javafx.fxml;
     exports by.mrtorex.businessshark.server.enums to com.google.gson;
     exports by.mrtorex.businessshark.client;
+    opens by.mrtorex.businessshark.client.gui.utils to com.google.gson, javafx.base;
 }

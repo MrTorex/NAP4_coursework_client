@@ -1,6 +1,8 @@
 package by.mrtorex.businessshark.client.gui.controllers;
 
+import by.mrtorex.businessshark.client.Main;
 import by.mrtorex.businessshark.client.gui.enums.ScenePath;
+import by.mrtorex.businessshark.client.gui.enums.ThemesPath;
 import by.mrtorex.businessshark.client.gui.services.UserService;
 import by.mrtorex.businessshark.client.gui.utils.AlertUtil;
 import by.mrtorex.businessshark.client.gui.utils.Loader;
@@ -8,10 +10,12 @@ import by.mrtorex.businessshark.server.model.entities.User;
 import by.mrtorex.businessshark.server.network.Response;
 import by.mrtorex.businessshark.server.network.ServerClient;
 import by.mrtorex.businessshark.server.serializer.Deserializer;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -32,6 +36,9 @@ public class LoginController implements Initializable {
 
     @FXML
     private TextField usernameField;
+
+    @FXML
+    private ComboBox themesComboBox;
 
     private UserService userService;
 
@@ -62,8 +69,20 @@ public class LoginController implements Initializable {
         Loader.loadScene((Stage) regButton.getScene().getWindow(), ScenePath.REGISTRATION);
     }
 
+    @FXML
+    void onThemesComboBox(ActionEvent event) {
+        Main.themeName = themesComboBox.getValue().toString();
+        Loader.reloadForTheme();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        themesComboBox.setItems(FXCollections.observableArrayList(
+                ThemesPath.values()
+        ));
+
+        themesComboBox.setPromptText(Main.themeName);
+
         this.userService = new UserService();
     }
 }

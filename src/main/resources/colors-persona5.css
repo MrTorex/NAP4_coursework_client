@@ -1,0 +1,46 @@
+/* ===================================================================================
+ * colors-persona5.css
+ * -----------------------------------------------------------------------------------
+ * Определяет цветовую палитру для стиля игры Persona 5 для приложения.
+ * Все переменные используются в основном файле стилей styles.css
+ * =================================================================================== */
+
+.root {
+    /* Общий фон и текст */
+    -color-background: linear-gradient(to bottom, #000000, #300000);
+    -color-text: #ffffff;
+
+    /* Разделители и границы */
+    -color-separator: #ff2a2a;
+    -color-border: #c00000;
+    -color-border-focused: #ff5555;
+
+    /* Поля ввода */
+    -color-text-field: #ffffff;
+    -color-background-field: #400000;
+    -color-background-field-hover: #600000;
+
+    /* Кнопки */
+    -color-text-button: #ffffff;
+    -color-background-button: #d10000;
+    -color-background-button-hover: #ff2a2a;
+    -color-background-button-pressed: #a00000;
+
+    /* Таблица */
+    -color-header-background: #a00000;
+    -color-header-text: #ffffff;
+    -color-row-hover: #500000;
+    -color-row-selected: #800000;
+    -color-text-selected: #ffffff;
+    -color-cell-background: #300000;
+
+    /* ComboBox */
+    -color-combobox-background: #400000;
+    -color-combobox-hover: #700000;
+    -color-combobox-focused-border: #ff2a2a;
+    -color-combobox-text: #ffffff;
+    -color-combobox-popup-bg: #400000;
+    -color-combobox-popup-hover: #700000;
+    -color-combobox-popup-selected: #a00000;
+    -color-combobox-popup-text: #ffffff;
+}
