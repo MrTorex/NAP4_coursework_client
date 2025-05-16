@@ -211,7 +211,11 @@ public class UsersController implements Initializable {
         }
 
         selectedUser.setUsername(usernameField.getText());
-        selectedUser.setPasswordHash(PasswordHasher.hashPassword(passwordField.getText()));
+
+        if (!selectedUser.getPasswordHash().equals(passwordField.getText())) {
+            selectedUser.setPasswordHash(PasswordHasher.hashPassword(passwordField.getText()));
+        }
+
         selectedUser.getPerson().setFirstName(firstNameField.getText());
         selectedUser.getPerson().setLastName(lastNameField.getText());
         selectedUser.getPerson().setPatronymic(patronymicField.getText());

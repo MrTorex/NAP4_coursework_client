@@ -27,7 +27,7 @@ public class Loader {
 
         stage.setResizable(true);
         Scene scene = new Scene(root);
-        scene.getStylesheets().add(Objects.requireNonNull(Loader.class.getResource("/colors-dark.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(Loader.class.getResource("/colors-synthwave.css")).toExternalForm());
         scene.getStylesheets().add(Objects.requireNonNull(Loader.class.getResource("/styles.css")).toExternalForm());
         stage.setScene(scene);
 

@@ -1,0 +1,46 @@
+/* ===================================================================================
+ * colors-synthwave.css
+ * -----------------------------------------------------------------------------------
+ * Определяет цветовую палитру для ярко неонового стиля synthwave для приложения.
+ * Все переменные используются в основном файле стилей styles.css
+ * =================================================================================== */
+
+.root {
+    /* Общий фон и текст */
+    -color-background: linear-gradient(to bottom, #2b003f, #1a004d);
+    -color-text: #00ffcc;
+
+    /* Разделители и границы */
+    -color-separator: #4a004d;
+    -color-border: #ff00ff;
+    -color-border-focused: #ff66ff;
+
+    /* Поля ввода */
+    -color-text-field: #00ffcc;
+    -color-background-field: #3a004d;
+    -color-background-field-hover: #4a005d;
+
+    /* Кнопки */
+    -color-text-button: #ffffff;
+    -color-background-button: #4a005d;
+    -color-background-button-hover: #5a006d;
+    -color-background-button-pressed: #3a004d;
+
+    /* Таблица */
+    -color-header-background: #4a004d;
+    -color-header-text: #00ffcc;
+    -color-row-hover: #3a005d;
+    -color-row-selected: #5a006d;
+    -color-text-selected: #ffffff;
+    -color-cell-background: #3a004d;
+
+    /* ComboBox */
+    -color-combobox-background: #3a004d;
+    -color-combobox-hover: #4a005d;
+    -color-combobox-focused-border: #ff66ff;
+    -color-combobox-text: #00ffcc;
+    -color-combobox-popup-bg: #3a004d;
+    -color-combobox-popup-hover: #4a005d;
+    -color-combobox-popup-selected: #5a006d;
+    -color-combobox-popup-text: #00ffcc;
+}
