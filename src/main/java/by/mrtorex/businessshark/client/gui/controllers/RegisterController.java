@@ -66,7 +66,7 @@ public class RegisterController implements Initializable {
         Response response = userService.register(username, password, firstName, lastName, patronymic);
 
         if (response.isSuccess()) {
-            AlertUtil.info("Registration Successful", "You have registered successfully.");
+            AlertUtil.info("Registration Successful", "You have registered successfully. Wait for admin approvement.");
 
             Loader.loadScene((Stage) registerButton.getScene().getWindow(), ScenePath.LOGIN);
         } else {

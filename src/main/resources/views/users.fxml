@@ -13,25 +13,49 @@
         <VBox styleClass="buttonsVBox">
             <Button fx:id="addButton" onAction="#onAddButton" text="Добавить пользователя" />
             <Button fx:id="deleteButton" onAction="#onDeleteButton" text="Удалить пользователя" />
-            <Button fx:id="changeButton" onAction="#onChangeButton" text="Изменить пользователя" />
         </VBox>
 
         <Separator styleClass="vertical"/>
 
         <TableView fx:id="usersTable">
             <columns>
-                <TableColumn fx:id="login" text="Логин" />
-                <TableColumn fx:id="passwordHash" text="Хэш пароля" />
-                <TableColumn fx:id="role" text="Роль" />
-                <TableColumn fx:id="status" text="Статус" />
+                <TableColumn fx:id="idColumn" text="ID" />
+                <TableColumn fx:id="firstNameColumn" text="Имя" />
+                <TableColumn fx:id="lastNameColumn" text="Фамилия" />
+                <TableColumn fx:id="patronymicColumn" text="Отчество" />
+                <TableColumn fx:id="usernameColumn" text="Имя пользователя" />
+                <TableColumn fx:id="roleColumn" text="Роль" />
             </columns>
              <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
              </columnResizePolicy>
         </TableView>
+
+        <Separator styleClass="vertical"/>
+
+        <VBox styleClass="buttonsVBox">
+            <HBox styleClass="workflowHBox">
+                <VBox styleClass="buttonsVBox">
+                    <TextField fx:id="usernameField" promptText="Введите имя пользователя" />
+                    <PasswordField fx:id="passwordField" promptText="Введите пароль" />
+                    <PasswordField fx:id="confirmPasswordField" promptText="Подтвердите пароль" />
+                    <ComboBox fx:id="rolesComboBox" promptText="Выберите роль"/>
+                </VBox>
+
+                <VBox styleClass="buttonsVBox">
+                    <TextField fx:id="firstNameField" promptText="Введите имя" />
+                    <TextField fx:id="lastNameField" promptText="Введите фамилию" />
+                    <TextField fx:id="patronymicField" promptText="Введите отчество" />
+                </VBox>
+            </HBox>
+
+            <Button fx:id="eraseButton" onAction="#onEraseButton" text="Очистить данные" />
+
+            <Button fx:id="updateButton" onAction="#onUpdateButton" text="Обновить данные пользователя" />
+        </VBox>
     </HBox>
 
     <Separator />
 
-    <Button fx:id="backToMenuButton" onAction="#onBackToMenuButton" text="В меню" />
+    <Button fx:id="backButton" onAction="#onBackButton" text="В меню" />
 </VBox>

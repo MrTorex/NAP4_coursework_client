@@ -1,22 +1,46 @@
+/* ===================================================================================
+ * colors-dark.css
+ * -----------------------------------------------------------------------------------
+ * Определяет цветовую палитру тёмной темы для JavaFX-приложения.
+ * Все переменные используются в основном файле стилей styles.css
+ * =================================================================================== */
+
 .root {
+    /* Общий фон и текст */
     -color-background: linear-gradient(to bottom, #2b2d30, #1e1f22);
     -color-text: #ffffff;
+
+    /* Разделители и границы */
     -color-separator: #313135;
     -color-border: #5a5c5f;
     -color-border-focused: #7a7c7f;
+
+    /* Поля ввода */
     -color-text-field: #ffffff;
     -color-background-field: #3a3c3f;
     -color-background-field-hover: #4a4c4f;
+
+    /* Кнопки */
     -color-text-button: #ffffff;
     -color-background-button: #4a4c4f;
     -color-background-button-hover: #5a5c5f;
     -color-background-button-pressed: #3a3c3f;
 
-    /* Добавленные цвета */
-    -color-header-background: #47494e; /* Цвет фона заголовка таблицы */
-    -color-header-text: #ffffff; /* Цвет текста заголовка таблицы */
-    -color-row-hover: #3a3c3f; /* Цвет фона строки при наведении */
-    -color-row-selected: #4a4c4f; /* Цвет фона выделенной строки */
-    -color-text-selected: #ffffff; /* Цвет текста выделенной строки */
-    -color-cell-background: #3a3c3f; /* Цвет фона ячейки */
-}
+    /* Таблица */
+    -color-header-background: #47494e;
+    -color-header-text: #ffffff;
+    -color-row-hover: #3a3c3f;
+    -color-row-selected: #4a4c4f;
+    -color-text-selected: #ffffff;
+    -color-cell-background: #3a3c3f;
+
+    /* ComboBox */
+    -color-combobox-background: #3a3c3f;
+    -color-combobox-hover: #4a4c4f;
+    -color-combobox-focused-border: #7a7c7f;
+    -color-combobox-text: #ffffff;
+    -color-combobox-popup-bg: #3a3c3f;
+    -color-combobox-popup-hover: #4a4c4f;
+    -color-combobox-popup-selected: #5a5c5f;
+    -color-combobox-popup-text: #ffffff;
+} 

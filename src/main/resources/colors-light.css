@@ -1,22 +1,46 @@
+/* ===================================================================================
+ * colors-light.css
+ * -----------------------------------------------------------------------------------
+ * Определяет цветовую палитру светлой темы для приложения.
+ * Все переменные используются в основном файле стилей styles.css
+ * =================================================================================== */
+
 .root {
+    /* Общий фон и текст */
     -color-background: linear-gradient(to bottom, #ffffff, #f0f0f0);
     -color-text: #000000;
+
+    /* Разделители и границы */
     -color-separator: #cccccc;
     -color-border: #cccccc;
     -color-border-focused: #007bff;
+
+    /* Поля ввода */
     -color-text-field: #000000;
     -color-background-field: #ffffff;
     -color-background-field-hover: #f0f0f0;
+
+    /* Кнопки */
     -color-text-button: #ffffff;
     -color-background-button: #007bff;
     -color-background-button-hover: #0056b3;
     -color-background-button-pressed: #004085;
 
-    /* Добавленные цвета */
-    -color-header-background: #f0f0f0; /* Цвет фона заголовка таблицы */
-    -color-header-text: #000000; /* Цвет текста заголовка таблицы */
-    -color-row-hover: #e0e0e0; /* Цвет фона строки при наведении */
-    -color-row-selected: #cce5ff; /* Цвет фона выделенной строки */
-    -color-text-selected: #000000; /* Цвет текста выделенной строки */
-    -color-cell-background: #ffffff; /* Цвет фона ячейки */
+    /* Таблица */
+    -color-header-background: #f0f0f0;
+    -color-header-text: #000000;
+    -color-row-hover: #e0e0e0;
+    -color-row-selected: #cce5ff;
+    -color-text-selected: #000000;
+    -color-cell-background: #ffffff;
+
+    /* ComboBox */
+    -color-combobox-background: #ffffff;
+    -color-combobox-hover: #f0f0f0;
+    -color-combobox-focused-border: #007bff;
+    -color-combobox-text: #000000;
+    -color-combobox-popup-bg: #ffffff;
+    -color-combobox-popup-hover: #e0e0e0;
+    -color-combobox-popup-selected: #d0d0d0;
+    -color-combobox-popup-text: #000000;
 }

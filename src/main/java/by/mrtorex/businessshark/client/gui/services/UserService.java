@@ -29,7 +29,7 @@ public class UserService {
         user.setPasswordHash(PasswordHasher.hashPassword(password));
 
         Role role = new Role();
-        role.setName("Admin");
+        role.setName("Waiting");
         user.setRole(role);
 
         Person person = new Person();
@@ -56,5 +56,9 @@ public class UserService {
         Pair<User, User> dataToUpdate = new Pair<>(user, ServerClient.getCurrentUser());
         return ServerClient.getInstance().sendRequest(new Request(Operation.UPDATE_USER, Serializer.toJson(dataToUpdate)));
     }
-}
 
+    public Response addUser(User user) {
+        Pair<User, User> dataToAdd = new Pair<>(user, ServerClient.getCurrentUser());
+        return ServerClient.getInstance().sendRequest(new Request(Operation.CREATE_USER, Serializer.toJson(dataToAdd)));
+    }
+}

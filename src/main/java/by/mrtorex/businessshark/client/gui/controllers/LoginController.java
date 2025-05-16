@@ -48,6 +48,8 @@ public class LoginController implements Initializable {
             {
                 case 1 -> Loader.loadScene((Stage) loginButton.getScene().getWindow(), ScenePath.ADMIN_MENU);
                 case 2 -> Loader.loadScene((Stage) loginButton.getScene().getWindow(), ScenePath.USER_MENU);
+                case 3 -> AlertUtil.info("Please, wait", "You weren't approved by admin.");
+                case 4 -> AlertUtil.error("Login Error", "You was banned by admin!");
                 default -> throw new IllegalStateException("Unexpected value: " + ServerClient.getCurrentUser().getRole().getId());
             }
         } else {

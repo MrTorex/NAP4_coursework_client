@@ -1,3 +1,10 @@
+/* ===================================================================================
+ * styles.css
+ * -----------------------------------------------------------------------------------
+ * Основные стили для компонентов интерфейса
+ * =================================================================================== */
+
+/* === Общие настройки корневого контейнера === */
 .root {
     -fx-background-color: -color-background;
     -fx-padding: 40;
@@ -11,6 +18,7 @@
     -fx-fill: -color-text;
 }
 
+/* === Разделители (горизонтальные и вертикальные) === */
 .separator {
     -fx-max-width: 150;
 }
@@ -20,41 +28,49 @@
     -fx-orientation: vertical;
 }
 
-.separator .line {
+.separator .line,
+.vertical .line {
     -fx-background-color: -color-separator;
-    -fx-pref-height: 5;
     -fx-border-color: null;
+}
+
+.separator .line {
+    -fx-pref-height: 5;
 }
 
 .vertical .line {
-    -fx-background-color: -color-separator;
     -fx-pref-width: 5;
-    -fx-border-color: null;
 }
 
+/* === Заголовки и текст === */
 .title {
     -fx-font-size: 28pt;
 }
 
-.text-field, .password-field {
+/* === Текстовые поля и поля ввода пароля === */
+.text-field,
+.password-field {
     -fx-background-color: -color-background-field;
     -fx-border-color: -color-border;
     -fx-border-radius: 15;
+    -fx-background-radius: 15;
     -fx-padding: 10;
     -fx-font-size: 14pt;
     -fx-text-fill: -color-text-field;
-    -fx-background-radius: 15;
     -fx-max-width: 300;
 }
 
-.text-field:focused, .password-field:focused {
+.text-field:focused,
+.password-field:focused {
     -fx-border-color: -color-border-focused;
 }
 
-.text-field:hover, .password-field:hover {
+.text-field:hover,
+.password-field:hover {
     -fx-background-color: -color-background-field-hover;
 }
 
+/* === Кнопки === */
 .button {
     -fx-background-color: -color-background-button;
     -fx-text-fill: -color-text-button;
@@ -77,11 +93,19 @@
     -fx-border-color: -color-border-focused;
 }
 
+/* === Пользовательские контейнеры === */
+.registerHBox,
+.workflowHBox,
+.buttonsVBox,
+.infoVBox,
+.registerVBox {
+    -fx-alignment: center;
+}
+
 .registerHBox {
     -fx-spacing: 20;
     -fx-pref-width: 500;
     -fx-pref-height: 150;
-    -fx-alignment: center;
 }
 
 .registerVBox {
@@ -91,20 +115,19 @@
 }
 
 .workflowHBox {
-    -fx-alignment: center;
     -fx-spacing: 50;
 }
 
-.buttonsVBox {
-    -fx-alignment: center;
+.buttonsVBox,
+.infoVBox {
     -fx-spacing: 30;
 }
 
 .infoVBox {
     -fx-alignment: center-left;
-    -fx-spacing: 30;
 }
 
+/* === Таблица === */
 .table-view {
     -fx-background-color: -color-background;
     -fx-border-color: -color-border;
@@ -125,30 +148,77 @@
     -fx-border-width: 1;
 }
 
-.table-view .table-row {
-    -fx-background-color: transparent; /* Цвет фона строки по умолчанию */
-    -fx-text-fill: -color-text;
-}
-
-.table-view .table-row:hover {
-    -fx-background-color: -color-row-hover; /* Цвет фона строки при наведении */
-}
-
-.table-view .table-row:selected {
-    -fx-background-color: -color-row-selected; /* Цвет фона выделенной строки */
-    -fx-text-fill: -color-text-selected; /* Цвет текста выделенной строки */
-}
-
 .table-view .table-cell {
     -fx-padding: 10;
     -fx-border-color: -color-separator;
-    -fx-border-width: 0 0 1 0; /* Нижняя граница ячейки */
+    -fx-border-width: 0 0 1 0;
 }
 
-.table-view .table-cell:filled {
-    -fx-background-color: -color-cell-background; /* Цвет фона ячейки */
+.table-view .table-row {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-text;
 }
 
-.table-view .table-cell:focused {
-    -fx-border-color: -color-border-focused; /* Цвет границы ячейки при фокусе */
+.table-view .table-row-cell {
+    -fx-background-color: -color-cell-background;
+    -fx-text-fill: -color-text;
+}
+
+.table-view:row-selection .table-row-cell:filled:hover,
+.table-view:focused .table-row-cell:filled:selected:hover,
+.table-view:row-selection .table-row-cell:filled:focused:hover {
+    -fx-background-color: -color-row-hover;
+}
+
+.table-view:focused .table-row-cell:filled:selected,
+.table-row-cell:filled:focused:selected {
+    -fx-background-color: -color-row-selected;
+    -fx-text-fill: -color-text-selected;
+}
+
+.table-view .table-row-cell,
+.table-view .table-row-cell:empty {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-text;
+}
+
+/* === ComboBox === */
+.combo-box {
+    -fx-background-color: -color-combobox-background;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 15;
+    -fx-background-radius: 15;
+    -fx-padding: 10;
+    -fx-text-fill: -color-combobox-text;
+    -fx-font-size: 14pt;
+    -fx-max-width: 300;
+}
+
+.combo-box:hover {
+    -fx-background-color: -color-combobox-hover;
+}
+
+.combo-box:focused {
+    -fx-border-color: -color-combobox-focused-border;
+}
+
+.combo-box-popup .list-view {
+    -fx-background-color: -color-combobox-popup-bg;
+    -fx-control-inner-background: -color-combobox-popup-bg;
+}
+
+.combo-box-popup .list-cell {
+    -fx-background-color: transparent;
+    -fx-text-fill: -color-combobox-popup-text;
+    -fx-font-size: 14pt;
+    -fx-padding: 10;
+}
+
+.combo-box-popup .list-cell:hover {
+    -fx-background-color: -color-combobox-popup-hover;
+}
+
+.combo-box-popup .list-cell:selected {
+    -fx-background-color: -color-combobox-popup-selected;
+    -fx-text-fill: -color-combobox-popup-text;
 }
