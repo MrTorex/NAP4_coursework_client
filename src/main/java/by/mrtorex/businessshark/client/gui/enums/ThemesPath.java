@@ -4,11 +4,11 @@ import lombok.Getter;
 
 @Getter
 public enum ThemesPath {
-    LIGHT("/colors-light.css"),
-    DARK("/colors-dark.css"),
-    SYNTHWAVE("/colors-synthwave.css"),
-    PERSONA5("/colors-persona5.css"),
-    CATPUCCIN("/colors-catpuccin.css");
+    LIGHT("/styles/colors/colors-light.css"),
+    DARK("/styles/colors/colors-dark.css"),
+    SYNTHWAVE("/styles/colors/colors-synthwave.css"),
+    PERSONA5("/styles/colors/colors-persona5.css"),
+    CATPUCCIN("/styles/colors/colors-catpuccin.css");
 
     private final String pathToCss;
 

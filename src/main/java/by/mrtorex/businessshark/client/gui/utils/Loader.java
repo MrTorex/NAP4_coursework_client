@@ -30,7 +30,7 @@ public class Loader {
         stage.setResizable(true);
         Scene scene = new Scene(root);
         scene.getStylesheets().add(Objects.requireNonNull(Loader.class.getResource(String.valueOf(ThemesPath.valueOf(Main.themeName).getPathToCss()))).toExternalForm());
-        scene.getStylesheets().add(Objects.requireNonNull(Loader.class.getResource("/styles.css")).toExternalForm());
+        scene.getStylesheets().add(Objects.requireNonNull(Loader.class.getResource("/styles/styles.css")).toExternalForm());
         stage.setScene(scene);
 
         logger.info("Scene loaded successfully: {}", scenePath.getPathToFxml());
