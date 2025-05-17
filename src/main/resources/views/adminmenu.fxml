@@ -16,7 +16,7 @@
 
     <Label styleClass="title">Главное меню</Label>
 
-    <Label>Добро пожаловать, </Label>
+    <Label fx:id="helloLabel">Добро пожаловать, </Label>
 
     <Separator/>
 
