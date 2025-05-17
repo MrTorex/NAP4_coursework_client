@@ -225,7 +225,10 @@ public class UsersController implements Initializable {
 
         if (response.isSuccess()) {
             AlertUtil.info("User updating", response.getMessage());
-
+            if (ServerClient.getCurrentUser().getId().equals(selectedUser.getId())) {
+                ServerClient.setCurrentUser(null);
+                Loader.loadScene((Stage) updateButton.getScene().getWindow(), ScenePath.LOGIN);
+            }
             loadUsersTable();
         } else {
             AlertUtil.error("User updating", response.getMessage());

@@ -7,7 +7,8 @@ public enum ThemesPath {
     LIGHT("/colors-light.css"),
     DARK("/colors-dark.css"),
     SYNTHWAVE("/colors-synthwave.css"),
-    PERSONA5("/colors-persona5.css");
+    PERSONA5("/colors-persona5.css"),
+    CATPUCCIN("/colors-catpuccin.css");
 
     private final String pathToCss;
 

@@ -1,0 +1,46 @@
+/* ===================================================================================
+ * colors-catpuccin.css
+ * -----------------------------------------------------------------------------------
+ * Определяет цветовую палитру темы Catpuccin для приложения.
+ * Все переменные используются в основном файле стилей styles.css
+ * =================================================================================== */
+
+.root {
+    /* Общий фон и текст */
+    -color-background: linear-gradient(to bottom, #2a273f, #1e1e2e);
+    -color-text: #f4dbf9;
+
+    /* Разделители и границы */
+    -color-separator: #6e6a8e;
+    -color-border: #988baa;
+    -color-border-focused: #d9aaff;
+
+    /* Поля ввода */
+    -color-text-field: #f4dbf9;
+    -color-background-field: #3a345e;
+    -color-background-field-hover: #4c457a;
+
+    /* Кнопки */
+    -color-text-button: #f4dbf9;
+    -color-background-button: #b39ddb;
+    -color-background-button-hover: #cda1ff;
+    -color-background-button-pressed: #a58bd4;
+
+    /* Таблица */
+    -color-header-background: #4e4670;
+    -color-header-text: #f4dbf9;
+    -color-row-hover: #544c7a;
+    -color-row-selected: #cba6f7;
+    -color-text-selected: #1e1e2e;
+    -color-cell-background: #2e294e;
+
+    /* ComboBox */
+    -color-combobox-background: #3a345e;
+    -color-combobox-hover: #4c457a;
+    -color-combobox-focused-border: #d9aaff;
+    -color-combobox-text: #f4dbf9;
+    -color-combobox-popup-bg: #2f2b48;
+    -color-combobox-popup-hover: #4c457a;
+    -color-combobox-popup-selected: #cba6f7;
+    -color-combobox-popup-text: #1e1e2e;
+}
