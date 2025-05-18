@@ -11,6 +11,7 @@ public enum ScenePath {
     USERS("/views/users.fxml"),
     STOCKS("/views/stocks.fxml"),
     PORTFOLIO("/views/portfolio.fxml"),
+    COMPANIES("/views/companies.fxml"),
     EDIT_INFO("/views/editinfo.fxml");
 
     private final String pathToFxml;

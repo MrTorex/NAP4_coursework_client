@@ -24,4 +24,8 @@ public class StockService {
     public Response addStock(Stock stock) {
         return ServerClient.getInstance().sendRequest(new Request(Operation.CREATE_STOCK, Serializer.toJson(stock)));
     }
+
+    public Response getAllStocksWithNoCompany() {
+        return ServerClient.getInstance().sendRequest(new Request(Operation.GET_ALL_STOCKS_WITH_NO_COMPANY));
+    }
 }
