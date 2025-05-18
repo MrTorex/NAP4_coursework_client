@@ -36,15 +36,15 @@
         <VBox styleClass="buttonsVBox">
             <HBox styleClass="workflowHBox">
                 <VBox styleClass="buttonsVBox">
-                    <TextField fx:id="usernameField" promptText="Введите имя пользователя" />
-                    <PasswordField fx:id="passwordField" promptText="Введите пароль" />
-                    <PasswordField fx:id="confirmPasswordField" promptText="Подтвердите пароль" />
-                    <ComboBox fx:id="rolesComboBox" promptText="Выберите роль"/>
+                    <TextField fx:id="usernameField" promptText="Введите имя пользователя *" />
+                    <PasswordField fx:id="passwordField" promptText="Введите пароль *" />
+                    <PasswordField fx:id="confirmPasswordField" promptText="Подтвердите пароль *" />
+                    <ComboBox fx:id="rolesComboBox" promptText="Выберите роль *"/>
                 </VBox>
 
                 <VBox styleClass="buttonsVBox">
-                    <TextField fx:id="firstNameField" promptText="Введите имя" />
-                    <TextField fx:id="lastNameField" promptText="Введите фамилию" />
+                    <TextField fx:id="firstNameField" promptText="Введите имя *" />
+                    <TextField fx:id="lastNameField" promptText="Введите фамилию *" />
                     <TextField fx:id="patronymicField" promptText="Введите отчество" />
                 </VBox>
             </HBox>

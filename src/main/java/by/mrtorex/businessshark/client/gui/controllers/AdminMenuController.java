@@ -16,6 +16,9 @@ import java.util.ResourceBundle;
 public class AdminMenuController implements Initializable {
 
     @FXML
+    public Button companiesButton;
+
+    @FXML
     private Button usersButton;
 
     @FXML
@@ -48,6 +51,11 @@ public class AdminMenuController implements Initializable {
     @FXML
     void onEditInfoButton(ActionEvent event) {
         Loader.loadScene((Stage) editInfoButton.getScene().getWindow(), ScenePath.EDIT_INFO);
+    }
+
+    @FXML
+    void onCompaniesButton(ActionEvent event) {
+        Loader.loadScene((Stage) companiesButton.getScene().getWindow(), ScenePath.COMPANIES);
     }
 
     @Override

@@ -24,6 +24,8 @@
 
     <Button fx:id="stocksButton" onAction="#onStocksButton" text="Управлять акциями"/>
 
+    <Button fx:id="companiesButton" onAction="#onCompaniesButton" text="Управлять компаниями"/>
+
     <Button fx:id="editInfoButton" onAction="#onEditInfoButton" text="Изменить данные"/>
 
     <Button fx:id="exitButton" onAction="#onExitButton" text="Выйти из аккаунта"/>
