@@ -18,15 +18,15 @@
             <Label>Ваши акции</Label>
             <TableView fx:id="userStocksTable">
                 <columns>
-                    <TableColumn fx:id="userStockName" text="Имя" />
-                    <TableColumn fx:id="userStockTicker" text="Тикер" />
-                    <TableColumn fx:id="userStockPrice" text="Цена" />
-                    <TableColumn fx:id="userStockQuantity" text="Количество" />
+                    <TableColumn fx:id="userStockTicketColumn" text="Тикет" />
+                    <TableColumn fx:id="userStockPriceColumn" text="Цена" />
+                    <TableColumn fx:id="userStockAmountColumn" text="Количество" />
                 </columns>
                 <columnResizePolicy>
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
             </TableView>
+            <TextField fx:id="sellTextbox" promptText="Кол-во акций на продажу" />
             <Button fx:id="sellButton" onAction="#onSellButton" text="Продать акции" />
         </VBox>
 
@@ -36,16 +36,16 @@
             <Label>Все акции</Label>
             <TableView fx:id="allStocksTable">
                 <columns>
-                    <TableColumn fx:id="allStockName" text="Имя" />
-                    <TableColumn fx:id="allStockTicker" text="Тикер" />
-                    <TableColumn fx:id="allStockPrice" text="Цена" />
-                    <TableColumn fx:id="allStockQuantity" text="Количество" />
-                    <TableColumn fx:id="allStockAviableQuantity" text="Доступно" />
+                    <TableColumn fx:id="allStockTicketColumn" text="Тикет" />
+                    <TableColumn fx:id="allStockPriceColumn" text="Цена" />
+                    <TableColumn fx:id="allStockAmountColumn" text="Количество" />
+                    <TableColumn fx:id="allStockAviableAmountColumn" text="Доступно" />
                 </columns>
                 <columnResizePolicy>
                     <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                 </columnResizePolicy>
             </TableView>
+            <TextField fx:id="buyTextbox" promptText="Кол-во акций на покупку" />
             <Button fx:id="buyButton" onAction="#onBuyButton" text="Купить акции" />
         </VBox>
     </HBox>

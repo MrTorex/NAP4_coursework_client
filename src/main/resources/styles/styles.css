@@ -222,3 +222,70 @@
     -fx-background-color: -color-combobox-popup-selected;
     -fx-text-fill: -color-combobox-popup-text;
 }
+
+/* === Стили для диалоговых окон (Alert) === */
+.dialog-pane {
+    -fx-background-color: -color-background;
+    -fx-border-color: -color-border;
+    -fx-border-width: 2;
+    -fx-padding: 20;
+}
+
+/* Заголовок диалога */
+.dialog-pane .header-panel {
+    -fx-background-color: -color-header-background;
+    -fx-border-color: -color-separator;
+    -fx-border-width: 0 0 1 0;
+    -fx-padding: 15;
+    -fx-border-radius: 15 15 0 0;
+    -fx-background-radius: 15 15 0 0;
+}
+
+.dialog-pane .header-panel .label {
+    -fx-text-fill: -color-header-text;
+    -fx-font-size: 18pt;
+    -fx-font-weight: bold;
+}
+
+/* Основное содержимое */
+.dialog-pane .content.label {
+    -fx-text-fill: -color-text;
+    -fx-font-size: 14pt;
+    -fx-padding: 20 15 20 15;
+    -fx-wrap-text: true;
+    -fx-background-color: -color-background-field;
+    -fx-background-radius: 0 0 15 15;
+}
+
+/* Кнопки диалога */
+.dialog-pane .button-bar {
+    -fx-padding: 15 0 0 0;
+}
+
+.dialog-pane .button-bar .container {
+    -fx-alignment: center;
+    -fx-spacing: 15;
+}
+
+.dialog-pane .button {
+    -fx-background-color: -color-background-button;
+    -fx-text-fill: -color-text-button;
+    -fx-font-size: 14pt;
+    -fx-padding: 8 20;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-min-width: 100;
+}
+
+.dialog-pane .button:hover {
+    -fx-background-color: -color-background-button-hover;
+}
+
+.dialog-pane .button:pressed {
+    -fx-background-color: -color-background-button-pressed;
+}
+
+.dialog-pane .button:focused {
+    -fx-border-color: -color-border-focused;
+    -fx-border-width: 1;
+}

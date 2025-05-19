@@ -1,9 +1,13 @@
 package by.mrtorex.businessshark.client.gui.utils;
 
+import by.mrtorex.businessshark.client.Main;
+import by.mrtorex.businessshark.client.gui.enums.ThemesPath;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import lombok.Builder;
 import lombok.Data;
+
+import java.util.Objects;
 
 @Data
 @Builder
@@ -25,6 +29,8 @@ public class AlertUtil {
         alert.setTitle("Business Shark");
         alert.setHeaderText(header);
         alert.setContentText(content);
+        alert.getDialogPane().getStylesheets().add(Objects.requireNonNull(AlertUtil.class.getResource(String.valueOf(ThemesPath.valueOf(Main.themeName).getPathToCss()))).toExternalForm());
+        alert.getDialogPane().getStylesheets().add(Objects.requireNonNull(AlertUtil.class.getResource("/styles/styles.css")).toExternalForm());
 
         return alert;
     }
