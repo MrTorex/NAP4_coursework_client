@@ -3,8 +3,7 @@ package by.mrtorex.businessshark.client.gui.controllers;
 import by.mrtorex.businessshark.client.gui.enums.ScenePath;
 import by.mrtorex.businessshark.client.gui.services.PortfolioService;
 import by.mrtorex.businessshark.client.gui.services.StockService;
-import by.mrtorex.businessshark.client.gui.utils.AlertUtil;
-import by.mrtorex.businessshark.client.gui.utils.Loader;
+import by.mrtorex.businessshark.client.gui.utils.*;
 import by.mrtorex.businessshark.server.model.entities.Stock;
 import by.mrtorex.businessshark.server.network.Response;
 import by.mrtorex.businessshark.server.network.ServerClient;
@@ -18,13 +17,29 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.MapValueFactory;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
 import java.lang.reflect.Type;
 import java.net.URL;
 import java.util.*;
 
 public class PortfolioController implements Initializable {
+
+    @FXML
+    public Button exportToExcelButton;
+
+    @FXML
+    public Button exportToMarkdownButton;
+
+    @FXML
+    public Button exportToPDFButton;
+
+    @FXML
+    public Button exportToJSONButton;
 
     @FXML
     private Label balanceLabel;
@@ -218,6 +233,7 @@ public class PortfolioController implements Initializable {
         buyTextbox.clear();
         allStocksTable.refresh();
         userStocksTable.refresh();
+        loadPortfolioData();
     }
 
     @FXML
@@ -270,4 +286,110 @@ public class PortfolioController implements Initializable {
     public void onBackToMenuButton(ActionEvent event) {
         Loader.loadScene((Stage) backToMenuButton.getScene().getWindow(), ScenePath.USER_MENU);
     }
+
+    @FXML
+    public void onExportToExcelButton(ActionEvent event) {
+        ObservableList<Map<String, Object>> items = userStocksTable.getItems();
+
+        if (items == null || items.isEmpty()) {
+            AlertUtil.warning("Экспорт в Excel", "Нет данных для экспорта.");
+            return;
+        }
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Сохранить Excel-файл");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Excel файлы", "*.xlsx"));
+        fileChooser.setInitialFileName("user_stocks.xlsx");
+
+        File file = fileChooser.showSaveDialog(exportToExcelButton.getScene().getWindow());
+        if (file == null) return;
+
+        try (OutputStream out = new FileOutputStream(file)) {
+            new ExcelExporter().export(new ArrayList<>(items), out, "Акции пользователя " + ServerClient.getCurrentUser().getUsername());
+            AlertUtil.info("Экспорт завершён", "Файл успешно сохранён:\n" + file.getAbsolutePath());
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertUtil.error("Ошибка экспорта", "Не удалось сохранить Excel-файл:\n" + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void onExportToMarkdownButton(ActionEvent event) {
+        ObservableList<Map<String, Object>> items = userStocksTable.getItems();
+
+        if (items == null || items.isEmpty()) {
+            AlertUtil.warning("Экспорт в Markdown", "Нет данных для экспорта.");
+            return;
+        }
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Сохранить Markdown-файл");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Markdown файлы", "*.md"));
+        fileChooser.setInitialFileName("user_stocks.md");
+
+        File file = fileChooser.showSaveDialog(exportToMarkdownButton.getScene().getWindow());
+        if (file == null) return;
+
+        try (OutputStream out = new FileOutputStream(file)) {
+            new MarkdownExporter().export(new ArrayList<>(items), out, "Акции пользователя " + ServerClient.getCurrentUser().getUsername());
+            AlertUtil.info("Экспорт завершён", "Файл успешно сохранён:\n" + file.getAbsolutePath());
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertUtil.error("Ошибка экспорта", "Не удалось сохранить Markdown-файл:\n" + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void onExportToPDFButton(ActionEvent event) {
+        ObservableList<Map<String, Object>> items = userStocksTable.getItems();
+
+        if (items == null || items.isEmpty()) {
+            AlertUtil.warning("Экспорт в PDF", "Нет данных для экспорта.");
+            return;
+        }
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Сохранить PDF-файл");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF файлы", "*.pdf"));
+        fileChooser.setInitialFileName("user_stocks.pdf");
+
+        File file = fileChooser.showSaveDialog(exportToPDFButton.getScene().getWindow());
+        if (file == null) return;
+
+        try (OutputStream out = new FileOutputStream(file)) {
+            new PdfExporter().export(new ArrayList<>(items), out, "Акции пользователя " + ServerClient.getCurrentUser().getUsername());
+            AlertUtil.info("Экспорт завершён", "Файл успешно сохранён:\n" + file.getAbsolutePath());
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertUtil.error("Ошибка экспорта", "Не удалось сохранить PDF-файл:\n" + e.getMessage());
+        }
+    }
+
+    @FXML
+    public void onExportToJSONButton(ActionEvent event) {
+        ObservableList<Map<String, Object>> items = userStocksTable.getItems();
+
+        if (items == null || items.isEmpty()) {
+            AlertUtil.warning("Экспорт в JSON", "Нет данных для экспорта.");
+            return;
+        }
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Сохранить JSON-файл");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JSON файлы", "*.json"));
+        fileChooser.setInitialFileName("user_stocks.json");
+
+        File file = fileChooser.showSaveDialog(exportToJSONButton.getScene().getWindow());
+        if (file == null) return;
+
+        try (OutputStream out = new FileOutputStream(file)) {
+            String title = "Акции пользователя " + ServerClient.getCurrentUser().getUsername();
+            new JsonExporter().export(new ArrayList<>(items), out, title);
+            AlertUtil.info("Экспорт завершён", "Файл успешно сохранён:\n" + file.getAbsolutePath());
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertUtil.error("Ошибка экспорта", "Не удалось сохранить JSON-файл:\n" + e.getMessage());
+        }
+    }
+
 }

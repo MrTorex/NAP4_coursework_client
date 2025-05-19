@@ -8,6 +8,9 @@ module by.mrtorex.businessshark.client {
     requires org.apache.logging.log4j.core;
     requires com.google.gson;
     requires jbcrypt;
+    requires org.apache.poi.poi;
+    requires org.apache.poi.ooxml;
+    requires com.github.librepdf.openpdf;
 
     opens by.mrtorex.businessshark.client.gui.controllers to javafx.fxml;
     opens by.mrtorex.businessshark.server.model.entities to com.google.gson, javafx.base;
