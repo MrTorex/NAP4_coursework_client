@@ -57,6 +57,7 @@
         <Button fx:id="exportToMarkdownButton" onAction="#onExportToMarkdownButton" text="Экспортировать в Markdown" />
         <Button fx:id="exportToPDFButton" onAction="#onExportToPDFButton" text="Экспортировать в PDF" />
         <Button fx:id="exportToJSONButton" onAction="#onExportToJSONButton" text="Экспортировать в JSON" />
+        <Button fx:id="exportToHTMLButton" onAction="#onExportToHTMLButton" text="Экспортировать в HTML" />
     </HBox>
 
     <Separator />

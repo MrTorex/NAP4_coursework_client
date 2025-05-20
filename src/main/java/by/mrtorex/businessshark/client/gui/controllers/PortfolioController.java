@@ -40,6 +40,9 @@ public class PortfolioController implements Initializable {
 
     @FXML
     public Button exportToJSONButton;
+    
+    @FXML
+    public Button exportToHTMLButton;
 
     @FXML
     private Label balanceLabel;
@@ -152,6 +155,7 @@ public class PortfolioController implements Initializable {
 
         // Все акции
         Response allStocksResponse = stockService.getAll();
+        Response noCompanyStocksResponse = stockService.getAllStocksWithNoCompany();
         System.out.println(allStocksResponse);
         if (!allStocksResponse.isSuccess()) {
             AlertUtil.error("Ошибка загрузки всех акций", allStocksResponse.getMessage());
@@ -159,9 +163,12 @@ public class PortfolioController implements Initializable {
         }
 
         List<Stock> allStocks = new Deserializer().extractListData(allStocksResponse.getData(), Stock.class);
+        List<Stock> allNoCompanyStocks = new Deserializer().extractListData(noCompanyStocksResponse.getData(), Stock.class);
         ObservableList<Map<String, Object>> allStockRows = FXCollections.observableArrayList();
         stockByIdMap.clear();
         for (Stock stock : allStocks) {
+            if (allNoCompanyStocks.contains(stock))
+                continue;
             Map<String, Object> row = new HashMap<>();
             System.out.println(stock.getId());
             System.out.println(portfolioService.getStockAvialableAmount(stock.getId()));
@@ -392,4 +399,29 @@ public class PortfolioController implements Initializable {
         }
     }
 
+    @FXML
+    public void onExportToHTMLButton(ActionEvent event) {
+        ObservableList<Map<String, Object>> items = userStocksTable.getItems();
+
+        if (items == null || items.isEmpty()) {
+            AlertUtil.warning("Экспорт в HTML", "Нет данных для экспорта.");
+            return;
+        }
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Сохранить HTML-файл");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("HTML файлы", "*.html"));
+        fileChooser.setInitialFileName("user_stocks.html");
+
+        File file = fileChooser.showSaveDialog(exportToHTMLButton.getScene().getWindow());
+        if (file == null) return;
+
+        try (OutputStream out = new FileOutputStream(file)) {
+            new HtmlExporter().export(new ArrayList<>(items), out, "Акции пользователя " + ServerClient.getCurrentUser().getUsername());
+            AlertUtil.info("Экспорт завершён", "Файл успешно сохранён:\n" + file.getAbsolutePath());
+        } catch (Exception e) {
+            e.printStackTrace();
+            AlertUtil.error("Ошибка экспорта", "Не удалось сохранить HTML-файл:\n" + e.getMessage());
+        }
+    }
 }
