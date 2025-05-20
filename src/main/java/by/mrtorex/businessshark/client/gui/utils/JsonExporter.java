@@ -9,8 +9,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Утилита для экспорта данных в формате JSON.
+ * Позволяет создавать и сохранять JSON-файлы с данными.
+ */
 public class JsonExporter {
 
+    /**
+     * Экспортирует данные в JSON-файл.
+     *
+     * @param data  список данных для экспорта
+     * @param out   выходной поток для записи JSON-файла
+     * @param title заголовок для JSON-документа
+     * @throws Exception если произошла ошибка при экспорте
+     */
     public void export(List<Map<String, Object>> data, OutputStream out, String title) throws Exception {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
@@ -22,4 +34,3 @@ public class JsonExporter {
         out.write(json.getBytes(StandardCharsets.UTF_8));
     }
 }
-

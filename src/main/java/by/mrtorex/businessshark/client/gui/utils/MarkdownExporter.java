@@ -1,13 +1,25 @@
 package by.mrtorex.businessshark.client.gui.utils;
 
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Утилита для экспорта данных в формате Markdown.
+ * Позволяет создавать и сохранять Markdown-файлы с данными.
+ */
 public class MarkdownExporter {
+
+    /**
+     * Экспортирует данные в Markdown-файл.
+     *
+     * @param data  список данных для экспорта
+     * @param out   выходной поток для записи Markdown-файла
+     * @param title заголовок для Markdown-документа
+     * @throws Exception если произошла ошибка при экспорте
+     */
     public void export(List<Map<String, Object>> data, OutputStream out, String title) throws Exception {
         StringBuilder sb = new StringBuilder();
 
@@ -16,16 +28,14 @@ public class MarkdownExporter {
         }
 
         if (!data.isEmpty()) {
-            List<String> headers = new ArrayList<>(data.get(0).keySet());
+            List<String> headers = new ArrayList<>(data.getFirst().keySet());
 
             sb.append("| ");
             for (String header : headers) {
                 sb.append(header).append(" | ");
             }
             sb.append("\n| ");
-            for (int i = 0; i < headers.size(); i++) {
-                sb.append("--- | ");
-            }
+            sb.append("--- | ".repeat(headers.size()));
             sb.append("\n");
 
             for (Map<String, Object> row : data) {
@@ -37,7 +47,6 @@ public class MarkdownExporter {
             }
         }
 
-        out.write(sb.toString().getBytes());
+        out.write(sb.toString().getBytes(StandardCharsets.UTF_8));
     }
 }
-

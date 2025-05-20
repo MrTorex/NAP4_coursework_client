@@ -7,15 +7,26 @@ import java.io.OutputStream;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Утилита для экспорта данных в формате Excel.
+ * Позволяет создавать и сохранять Excel-файлы с данными.
+ */
 public class ExcelExporter {
 
+    /**
+     * Экспортирует данные в Excel-файл.
+     *
+     * @param data  список данных для экспорта
+     * @param out   выходной поток для записи Excel-файла
+     * @param title заголовок для листа
+     * @throws Exception если произошла ошибка при экспорте
+     */
     public void export(List<Map<String, Object>> data, OutputStream out, String title) throws Exception {
         Workbook workbook = new XSSFWorkbook();
         Sheet sheet = workbook.createSheet("Export");
 
         int rowIdx = 0;
 
-        // Заголовок
         if (title != null && !title.isEmpty()) {
             Row titleRow = sheet.createRow(rowIdx++);
             Cell titleCell = titleRow.createCell(0);
@@ -29,12 +40,11 @@ public class ExcelExporter {
             titleCell.setCellStyle(titleStyle);
 
             sheet.addMergedRegion(new org.apache.poi.ss.util.CellRangeAddress(
-                    0, 0, 0, data.isEmpty() ? 0 : data.get(0).size() - 1
+                    0, 0, 0, data.isEmpty() ? 0 : data.getFirst().size() - 1
             ));
         }
 
         if (!data.isEmpty()) {
-            // Стили для границ
             CellStyle headerStyle = workbook.createCellStyle();
             headerStyle.setBorderBottom(BorderStyle.THIN);
             headerStyle.setBorderTop(BorderStyle.THIN);
@@ -50,16 +60,14 @@ public class ExcelExporter {
             cellStyle.setBorderLeft(BorderStyle.THIN);
             cellStyle.setBorderRight(BorderStyle.THIN);
 
-            // Заголовки
             Row headerRow = sheet.createRow(rowIdx++);
             int colIdx = 0;
-            for (String key : data.get(0).keySet()) {
+            for (String key : data.getFirst().keySet()) {
                 Cell cell = headerRow.createCell(colIdx++);
                 cell.setCellValue(key);
                 cell.setCellStyle(headerStyle);
             }
 
-            // Данные
             for (Map<String, Object> rowMap : data) {
                 Row row = sheet.createRow(rowIdx++);
                 colIdx = 0;

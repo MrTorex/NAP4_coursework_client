@@ -5,10 +5,13 @@ import lombok.Data;
 
 import java.io.Serializable;
 
+/**
+ * Модель ответа, представляющая собой сущность с результатом операции, сообщением и данными.
+ */
 @Data
 @AllArgsConstructor
 public class Response implements Serializable {
-    private boolean success;
-    private String message;
-    private String data;
+    private boolean success; // Успех операции
+    private String message; // Сообщение о результате операции
+    private String data; // Данные ответа
 }

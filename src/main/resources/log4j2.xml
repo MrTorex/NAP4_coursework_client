@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="info">
     <Properties>
-        <Property name="layout">%d %-5level %logger - %m%n</Property>
+        <Property name="layout">%d %highlight{%-5level}{FATAL=red blink, ERROR=red, WARN=yellow, INFO=green, DEBUG=cyan, TRACE=blue} %logger - %msg%n</Property>
     </Properties>
 
     <Appenders>
@@ -23,15 +23,87 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="main" level="info" additivity="false">
+        <Logger name="by.mrtorex.businessshark.client.Main" level="info" additivity="false">
             <AppenderRef ref="LogFile" />
             <AppenderRef ref="Console" />
         </Logger>
-        <Logger name="loader" level="info" additivity="false">
+        <Logger name="by.mrtorex.businessshark.client.gui.utils.Loader" level="info" additivity="false">
             <AppenderRef ref="LogFile" />
             <AppenderRef ref="Console" />
         </Logger>
-        <Root level="error">
+        <Logger name="by.mrtorex.businessshark.client.gui.controllers.AdminMenuController" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.client.gui.controllers.CompaniesController" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.client.gui.controllers.EditInfoController" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.client.gui.controllers.LoginController" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.client.gui.controllers.PortfolioController" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.client.gui.controllers.RegisterController" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.client.gui.controllers.StocksController" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.client.gui.controllers.UserMenuController" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.client.gui.controllers.UsersController" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.client.gui.services.CompanyService" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.client.gui.services.PortfolioService" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.client.gui.services.RoleService" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.client.gui.services.StockService" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.client.gui.services.UserService" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.server.network.ServerClient" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.server.serializer.Deserializer" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.server.serializer.Serializer" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Logger name="by.mrtorex.businessshark.server.utils.PasswordHasher" level="info" additivity="false">
+            <AppenderRef ref="LogFile" />
+            <AppenderRef ref="Console" />
+        </Logger>
+        <Root level="warn">
             <AppenderRef ref="Console" />
         </Root>
     </Loggers>

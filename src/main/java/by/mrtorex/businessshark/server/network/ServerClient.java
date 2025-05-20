@@ -3,6 +3,9 @@ package by.mrtorex.businessshark.server.network;
 import by.mrtorex.businessshark.server.exceptions.NoConnectionException;
 import by.mrtorex.businessshark.server.model.entities.User;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +15,12 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.ResourceBundle;
 
+/**
+ * Класс для управления подключением клиента к серверу.
+ * Реализует паттерн Singleton для обеспечения единственного экземпляра клиента.
+ */
 public class ServerClient {
+    private static final Logger logger = LogManager.getLogger(ServerClient.class);
     private static ServerClient instance;
 
     private Socket socket;
@@ -23,23 +31,38 @@ public class ServerClient {
     @Setter
     private static User currentUser;
 
+    /**
+     * Приватный конструктор для инициализации подключения к серверу.
+     *
+     * @throws NoConnectionException если не удалось подключиться к серверу
+     */
     private ServerClient() throws NoConnectionException {
         connect(); // Если подключение провалится, выбросится исключение NoConnectionException
     }
 
-    // Метод для функционирования паттерна синглтона
+    /**
+     * Метод для получения единственного экземпляра класса ServerClient.
+     *
+     * @return единственный экземпляр ServerClient
+     * @throws NoConnectionException если не удалось подключиться к серверу
+     */
     public static synchronized ServerClient getInstance() throws NoConnectionException {
         if (instance == null) {
             try {
                 instance = new ServerClient();
             } catch (Exception e) {
-                e.printStackTrace();
+                logger.error("Ошибка при создании экземпляра ServerClient: {}", e.getMessage());
+                throw new NoConnectionException("Не удалось создать экземпляр ServerClient");
             }
         }
         return instance;
     }
 
-
+    /**
+     * Метод для подключения к серверу.
+     *
+     * @throws NoConnectionException если не удалось подключиться к серверу
+     */
     private void connect() throws NoConnectionException {
         ResourceBundle bundle = ResourceBundle.getBundle("server");
 
@@ -51,45 +74,57 @@ public class ServerClient {
             out = new ObjectOutputStream(socket.getOutputStream());
             in = new ObjectInputStream(socket.getInputStream());
 
-            System.out.println("Connected to the server at " + serverAddress + ":" + serverPort);
+            logger.info("Подключено к серверу по адресу {}:{}", serverAddress, serverPort);
         } catch (IOException e) {
-            throw new NoConnectionException("Failed to connect to the server at " + serverAddress + ":" + serverPort);
+            throw new NoConnectionException("Не удалось подключиться к серверу по адресу " + serverAddress + ":" + serverPort);
         }
     }
 
+    /**
+     * Метод для отключения от сервера.
+     */
     public void disconnect() {
         try {
             if (in != null) in.close();
             if (out != null) out.close();
             if (socket != null) socket.close();
             instance = null;
-            System.out.println("Disconnected from the server.");
+            logger.info("Отключено от сервера.");
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Ошибка при отключении от сервера: {}", e.getMessage());
         }
     }
 
-    // Отправляет запрос и возвращает на него ответ
+    /**
+     * Отправляет запрос на сервер и возвращает ответ.
+     *
+     * @param request запрос для отправки
+     * @return ответ от сервера
+     */
     public Response sendRequest(Request request) {
         try {
-            System.out.println("Sending request: " + request.getOperation());
+            logger.info("Отправка запроса: {}", request.getOperation());
             out.writeObject(request);
             out.flush();
 
             return processResponse();
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Ошибка при отправке запроса: {}", e.getMessage());
             return null;
         }
     }
 
+    /**
+     * Обрабатывает ответ от сервера.
+     *
+     * @return ответ от сервера
+     */
     private Response processResponse() {
         try {
             return (Response) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            logger.error("Ошибка при обработке ответа: {}", e.getMessage());
             return null;
         }
     }
 }
-

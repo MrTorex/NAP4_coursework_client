@@ -5,8 +5,20 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Утилита для экспорта данных в формате HTML.
+ * Позволяет создавать и сохранять HTML-файлы с данными.
+ */
 public class HtmlExporter {
 
+    /**
+     * Экспортирует данные в HTML-файл.
+     *
+     * @param data  список данных для экспорта
+     * @param out   выходной поток для записи HTML-файла
+     * @param title заголовок для HTML-документа
+     * @throws Exception если произошла ошибка при экспорте
+     */
     public void export(List<Map<String, Object>> data, OutputStream out, String title) throws Exception {
         StringBuilder html = new StringBuilder();
 
@@ -27,10 +39,9 @@ public class HtmlExporter {
         html.append("    <h1>").append(title).append("</h1>\n");
         html.append("    <table>\n");
 
-        // Заголовки таблицы
         if (!data.isEmpty()) {
             html.append("        <tr>\n");
-            for (String key : data.get(0).keySet()) {
+            for (String key : data.getFirst().keySet()) {
                 html.append("            <th>").append(key).append("</th>\n");
             }
             html.append("        </tr>\n");
@@ -39,7 +50,7 @@ public class HtmlExporter {
             for (Map<String, Object> row : data) {
                 html.append("        <tr>\n");
                 for (Object value : row.values()) {
-                    html.append("            <td>").append(String.valueOf(value)).append("</td>\n");
+                    html.append("            <td>").append(value).append("</td>\n");
                 }
                 html.append("        </tr>\n");
             }
