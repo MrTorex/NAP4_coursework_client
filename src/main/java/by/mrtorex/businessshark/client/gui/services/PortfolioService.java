@@ -15,7 +15,7 @@ import org.apache.logging.log4j.Logger;
 /**
  * Сервис для управления портфелем пользователя, включая операции с акциями и балансом.
  */
-@SuppressWarnings("unused")
+@SuppressWarnings({"LoggingSimilarMessage", "DuplicatedCode", "unused"})
 public class PortfolioService {
     private static final Logger logger = LogManager.getLogger(PortfolioService.class);
     private final int currentUserId;
@@ -41,11 +41,29 @@ public class PortfolioService {
      *
      * @return ответ сервера с данными о балансе
      */
-    public Response getAccount() {
+    public Response getCurrentUserAccount() {
         try {
             String userIdJson = Serializer.toJson(currentUserId);
             Response response = serverClient.sendRequest(new Request(Operation.GET_USER_ACCOUNT, userIdJson));
             logger.info("Запрошен баланс для пользователя с ID: {}", currentUserId);
+            return response;
+        } catch (ResponseException e) {
+            logger.error("Ошибка при получении баланса пользователя: {}", e.getMessage());
+            return new Response(false, e.getMessage(), null);
+        }
+    }
+
+    /**
+     * Получает баланс указанного пользователя.
+     *
+     * @param userId идентификатор пользователя
+     * @return ответ сервера с данными о балансе
+     */
+    public Response getAccount(int userId) {
+        try {
+            String userIdJson = Serializer.toJson(userId);
+            Response response = serverClient.sendRequest(new Request(Operation.GET_USER_ACCOUNT, userIdJson));
+            logger.info("Запрошен баланс для пользователя с ID: {}", userId);
             return response;
         } catch (ResponseException e) {
             logger.error("Ошибка при получении баланса пользователя: {}", e.getMessage());

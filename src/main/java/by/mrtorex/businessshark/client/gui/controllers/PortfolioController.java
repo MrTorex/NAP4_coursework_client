@@ -36,7 +36,7 @@ import java.util.*;
  * Контроллер для управления портфелем пользователя в графическом интерфейсе.
  * Отвечает за отображение и управление акциями пользователя, а также за экспорт данных.
  */
-@SuppressWarnings({"rawtypes", "unused"})
+@SuppressWarnings({"rawtypes", "unused", "DuplicatedCode"})
 public class PortfolioController implements Initializable {
     private static final Logger logger = LogManager.getLogger(PortfolioController.class);
 
@@ -162,7 +162,7 @@ public class PortfolioController implements Initializable {
      * Загружает текущий баланс пользователя.
      */
     private void loadBalance() {
-        Response balanceResponse = portfolioService.getAccount();
+        Response balanceResponse = portfolioService.getCurrentUserAccount();
         if (!balanceResponse.isSuccess()) {
             logger.warn("Ошибка загрузки баланса: {}", balanceResponse.getMessage());
             throw new IllegalStateException("Ошибка загрузки баланса: " + balanceResponse.getMessage());

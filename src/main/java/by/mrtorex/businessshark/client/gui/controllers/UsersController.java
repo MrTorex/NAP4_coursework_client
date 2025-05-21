@@ -1,6 +1,7 @@
 package by.mrtorex.businessshark.client.gui.controllers;
 
 import by.mrtorex.businessshark.client.gui.enums.ScenePath;
+import by.mrtorex.businessshark.client.gui.services.PortfolioService;
 import by.mrtorex.businessshark.client.gui.services.RoleService;
 import by.mrtorex.businessshark.client.gui.services.UserService;
 import by.mrtorex.businessshark.client.gui.utils.AlertUtil;
@@ -30,6 +31,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.net.URL;
 import java.util.List;
+import java.util.Objects;
 import java.util.ResourceBundle;
 
 /**
@@ -102,6 +104,7 @@ public class UsersController implements Initializable {
 
     private final UserService userService;
     private final RoleService roleService;
+    private final PortfolioService portfolioService;
 
     /**
      * Конструктор по умолчанию.
@@ -109,6 +112,7 @@ public class UsersController implements Initializable {
     public UsersController() {
         this.userService = new UserService();
         this.roleService = new RoleService();
+        this.portfolioService = new PortfolioService();
         logger.info("Инициализирован UsersController");
     }
 
@@ -239,6 +243,16 @@ public class UsersController implements Initializable {
             }
 
             if (response.isSuccess()) {
+                if (Objects.equals(role.getName(), "User")) {
+                    logger.info("Добавление баланса пользователю: {}", newUser.getUsername());
+                    List<User> allUsers = new Deserializer().extractListData(userService.getAll().getData(), User.class);
+                    User tempUser = new User();
+                    for (User user : allUsers) {
+                        if (user.getUsername().equals(newUser.getUsername()))
+                            tempUser = user;
+                    }
+                    portfolioService.setAccount(tempUser.getId(), 9000);
+                }
                 AlertUtil.info("Добавление пользователя", "Пользователь успешно добавлен!");
                 logger.info("Успешно добавлен пользователь: {}", username);
                 loadInformation();
@@ -325,6 +339,12 @@ public class UsersController implements Initializable {
             selectedUser.getPerson().setLastName(lastName);
             selectedUser.getPerson().setPatronymic(patronymic);
             selectedUser.setRole(selectedRole);
+
+            double checkAccount = new Deserializer().extractData(portfolioService.getAccount(selectedUser.getId()).getData(), Double.TYPE);
+            if (Objects.equals(selectedRole.getName(), "User") && checkAccount == -1.0) {
+                logger.info("Добавление баланса пользователю: {}", selectedUser.getUsername());
+                portfolioService.setAccount(selectedUser.getId(), 9000);
+            }
 
             Response response = userService.updateUser(selectedUser);
             if (response == null) {
